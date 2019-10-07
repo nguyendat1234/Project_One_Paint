@@ -1,12 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,12 +16,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
+
+
 public class GiaoDien extends JFrame
 {
 	
-	private static String luachon = " ";
+	public static String luachon = "";
 	static Color luachonmau = Color.white;
-	private static ArrayList<Paint>paint=new ArrayList<Paint>();
+	public static ArrayList<Paint_F>paint1=new ArrayList<Paint_F>();
 	private  JPanel Cpanel;
 	public static GiaoDien frame; 
 	private JComboBox colors;
@@ -31,18 +33,16 @@ public class GiaoDien extends JFrame
 	 private Color colorArray[]=
 		    {Color.BLACK , Color.BLUE , Color.CYAN , Color.darkGray , Color.GRAY , 
 		        Color.GREEN, Color.lightGray , Color.MAGENTA , Color.ORANGE , 
-		    Color.PINK , Color.RED , Color.WHITE , Color.YELLOW};
-	 
-	 
+		    Color.PINK , Color.RED , Color.WHITE , Color.YELLOW};	 
 	 public static void main(String[] args) {
 			try{
 	    		frame = new GiaoDien();
 	    		frame.setVisible(true);
 	    		
-	        }catch (Exception e) {
+	       }catch (Exception e) {
 				e.printStackTrace();
-			}
-			
+		}
+		 
 		}
 	 
 	public GiaoDien()
@@ -51,51 +51,51 @@ public class GiaoDien extends JFrame
 		setTitle("Đồ Án Paint");
 		setSize(1000, 600);
 		setMinimumSize(getSize());
-		
-		
-	       
 		//tao menu 
 		
 		JMenuBar menubar =new JMenuBar();
 		setJMenuBar(menubar);
-		JMenu mmenubar =new JMenu("Menu");
+		JMenu mmenubar =new JMenu("Tùy chọn");
+		JMenu mmenubar1 =new JMenu("Giới Thiệu");
 		menubar.add(mmenubar);
+		menubar.add(mmenubar1);
+		
 		//
-		JMenuItem menunew =new JMenuItem("New");
+		JMenuItem menunew =new JMenuItem("Mới");
 		menunew.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				luachon = "";
 				OpenFile.image = null;
-				paint.clear();	
+				paint1.clear();	
 				repaint();
 				
 			}
 		});		
 			mmenubar.add(menunew);
 		//menu open
-		JMenuItem mnOpen = new JMenuItem("Open");
+		JMenuItem mnOpen = new JMenuItem("Mở");
 		mnOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 luachon="Open";
-            	GiaoDien.paint.clear(); 
+            	GiaoDien.paint1.clear(); 
 				new OpenFile();
             }
         });
 		mmenubar.add(mnOpen);
 		//menu save 
-		JMenuItem mnNew = new JMenuItem("Save");
+		JMenuItem mnNew = new JMenuItem("Lưu");
 		mnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				luachon = "Save";
-				GiaoDien.paint.clear();
+				GiaoDien.paint1.clear();
 				new SaveFile();
 			}
 		});
 		mmenubar.add(mnNew);
 		//menu exit
-		JMenuItem mnExit = new JMenuItem("Exit");
+		JMenuItem mnExit = new JMenuItem("Thoát");
 		mnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				luachon = "Exit";
@@ -135,10 +135,11 @@ public class GiaoDien extends JFrame
 		});
 		panel.add(btnLine);
 		//button R
+
 		JButton btnR = new JButton("Hình Chữ Nhật");
 		btnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				luachon= "Hình Chữ Nhật";
+				luachon= "1";
 			}
 		});
 		panel.add(btnR);
@@ -181,12 +182,11 @@ public class GiaoDien extends JFrame
 			JButton btnMove = new JButton("Di chuyển");
 			btnMove.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					luachon= "di Chuyển";
+					luachon= "di chuyển";
 				}
 			});
 			panel.add(btnMove);
-			//delete
-			 
+			//delete	 
 				JButton btnDelete = new JButton("Xóa");
 				btnDelete.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -200,10 +200,14 @@ public class GiaoDien extends JFrame
 				pnlColor.setSize(20, getHeight());
 				panel.add(pnlColor, BorderLayout.SOUTH);
 			// select color
-			colors =new JComboBox(colorOptions);
-			panel.add(colors);
-			
+				Cpanel.add(new Paint_Event(), BorderLayout.CENTER);
+				validate();
 
+				
+				
+			//colors =new JComboBox(colorOptions);
+			//panel.add(colors);
+			
 	}
 	
 	
