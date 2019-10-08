@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-
 import javax.swing.JComponent;
 
 public class Paint_Event extends JComponent
@@ -12,17 +11,20 @@ public class Paint_Event extends JComponent
 	public Point start, end;
 	public Paint_F temp;
 	public Paint_Event() 
+
 	{
+		
+		
 		this.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) //được gọi khi một nút chuột được nhấn và con trỏ chuột ở trên component.
+			public void mousePressed(MouseEvent e) //được gọi khi nhấn giữ chuột
 			{
-			start=new Point(e.getX(),e.getY());
-			end=start;
+				start=new Point(e.getX(),e.getY());
+					end=start;
 			if(GiaoDien.luachon == "Di chuyen") //nếu click "di chuyển" 
 			{
-				
-		          for(int i = GiaoDien.paint1.size() - 1; i>=0; i=i-1) //khoảng cách của form
+				System.out.print("c");
+		 /*         for(int i = GiaoDien.paint1.size() - 1; i>=0; i=i-1) //khoảng cách của 					form
 		          {
 		        	  Paint_F pt = GiaoDien.paint1.get(i);
 	        		  if(pt.Kiemtra(start)){   //kiểm tra xem điểm đầu có hợp lệ 
@@ -30,7 +32,7 @@ public class Paint_Event extends JComponent
 	        			  GiaoDien.paint1.remove(pt); //trả về
 	        			  break;
 	        		  }
-		          }
+		          }*/
 	          }
 			else if(GiaoDien.luachon == "Xóa" ){
 		          for(int i = GiaoDien.paint1.size() - 1; i>=0; i=i-1){
@@ -43,11 +45,13 @@ public class Paint_Event extends JComponent
 		          }
 	          }
 			}
+			
+			
 			@Override
-			public void mouseReleased(MouseEvent e) 
+			public void mouseReleased(MouseEvent e) //sự kiện gọi khi nhả chuột
 			{
 				Point p = new Point(e.getX(), e.getY());
-				if(GiaoDien.luachon =="Hình Chữ Nhật"){
+				if(GiaoDien.luachon =="1"){
 	        		M_Rectangle obj = new M_Rectangle();
 	        		obj.taodoituong(start,p);
 	    			GiaoDien.paint1.add(obj);
@@ -69,10 +73,12 @@ public class Paint_Event extends JComponent
 	        		}
 	        	}
 	        	else if(GiaoDien.luachon =="di chuyển"){
-	        			if(temp.Kiemtra(start)){
+	        		
+	        		System.out.print("c");
+	        			/*if(temp.Kiemtra(start)){
 	        				temp.dichuyen(start, p);
         					GiaoDien.paint1.add(temp);
-	        			}
+	        			}*/
 	        		}
 	        	start = null;
 	        	end = null;
@@ -102,10 +108,8 @@ public class Paint_Event extends JComponent
 		}
 		if (start != null && end != null) {
 			if(GiaoDien.luachon == "1"){
-				System.out.print("đs");
 				M_Rectangle obj = new M_Rectangle();
 				obj.taodoituong(start, end);
-				
 				obj.vedoituong(g2);
 			}
 			else if(GiaoDien.luachon == "Di chuyển"){

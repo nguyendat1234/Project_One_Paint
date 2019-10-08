@@ -33,15 +33,23 @@ public class GiaoDien extends JFrame
 	 private Color colorArray[]=
 		    {Color.BLACK , Color.BLUE , Color.CYAN , Color.darkGray , Color.GRAY , 
 		        Color.GREEN, Color.lightGray , Color.MAGENTA , Color.ORANGE , 
-		    Color.PINK , Color.RED , Color.WHITE , Color.YELLOW};	 
+		    Color.PINK , Color.RED , Color.WHITE , Color.YELLOW};	
+	 
+	 
 	 public static void main(String[] args) {
 			try{
+			
 	    		frame = new GiaoDien();
-	    		frame.setVisible(true);
+	    		frame.setVisible(true);  	
+	    		Paint_Event fv=new Paint_Event();
 	    		
+	    	
 	       }catch (Exception e) {
 				e.printStackTrace();
+				
 		}
+			
+			
 		 
 		}
 	 
@@ -135,7 +143,6 @@ public class GiaoDien extends JFrame
 		});
 		panel.add(btnLine);
 		//button R
-
 		JButton btnR = new JButton("Hình Chữ Nhật");
 		btnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
